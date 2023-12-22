@@ -19,7 +19,7 @@ const Navbar = ({ heroTopInView }: { heroTopInView: boolean }) => {
       className={cn("py-3 md:py-4 sticky top-0 z-50", {
         "bg-black/0 transition-all duration-100": heroTopInView,
         "bg-green-900 transition-all duration-100": !heroTopInView,
-        "bg-green-900": isOpen,
+        "bg-green-900 transition-all duration-500": isOpen,
       })}
     >
       <header>
@@ -83,12 +83,13 @@ const Navbar = ({ heroTopInView }: { heroTopInView: boolean }) => {
           {/* TODO: prevent scrolling while menu is open */}
           {isOpen && (
             <div
-              className={cn("absolute inset-x-0 top-full text-sm", {
-                "animate-in fade-in-10 slide-in-from-top-5": !isOpen,
+              className={cn("absolute inset-x-0 top-full text-sm transition-opacity duration-500", {
+                "bg-black": isOpen,
+                "bg-black/0": !isOpen
               })}
             >
               <div className="absolute inset-0 top-1/2 shadow">
-                <ul className="relative flex flex-col items-center gap-2 justify-around bg-black">
+                <ul className="animate-in fade-in-10 duration-500 relative flex flex-col items-center gap-2 justify-around bg-black">
                   {items.map((item) => {
                     return (
                       <NavItem
